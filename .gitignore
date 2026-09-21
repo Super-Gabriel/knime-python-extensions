@@ -56,4 +56,4 @@ Thumbs.db
 local-update-site
 
 ./*.zip
-./temp/
+temp
