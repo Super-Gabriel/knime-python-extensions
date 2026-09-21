@@ -19,29 +19,35 @@ from PSO import PSOFeatureSelection
     icon_path="../../icons/icon.png",
     category="/community/PSO",
 )
-@knext.input_table(name="X Table",
-                   description="Tabla de características (X, solo columnas numéricas)")
-@knext.input_table(name="Y Table",
-                   description="Tabla de etiquetas (Y, una sola columna numérica)")
-@knext.output_table(name="Selected Features",
-                    description="Tabla X con solo las columnas seleccionadas por PSO")
+@knext.input_table(
+    name="Input Table",
+    description="Table containing the X features and the target Y column",
+)
+@knext.output_table(
+    name="Selected Features",
+    description="Table containing the selected feature columns",
+)
 class PSONode:
     """Selecciona características con Particle Swarm Optimization.
 
     Tarea: **Regresión** (usa RandomForestRegressor internamente).
     """
+    y_column = knext.ColumnParameter(
+        label="Target column (Y)",
+        description="Select the column to use as the target variable",
+    )
 
     swarm_size = knext.IntParameter(
         label="Tamaño del enjambre",
         description="Número de partículas del PSO",
-        default_value=30,
+        default_value=15,
         min_value=5,
     )
 
     iterations = knext.IntParameter(
         label="Iteraciones",
         description="Número de iteraciones del PSO",
-        default_value=50,
+        default_value=15,
         min_value=1,
     )
 
@@ -72,7 +78,7 @@ class PSONode:
     cv_folds = knext.IntParameter(
         label="Folds de validación cruzada",
         description="Número de particiones para cross_val_score",
-        default_value=5,
+        default_value=3,
         min_value=2,
     )
 
@@ -80,7 +86,7 @@ class PSONode:
         label="Máximo de descriptores",
         description=("Número máximo de descriptores a seleccionar. "
                      "Usa 0 para modo umbral (sin límite)."),
-        default_value=10,
+        default_value=5,
         min_value=0,
     )
 
