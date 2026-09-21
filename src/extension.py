@@ -16,7 +16,7 @@ from PSO import PSOFeatureSelection
 @knext.node(
     name="PSO Feature Selector",
     node_type=knext.NodeType.LEARNER,
-    icon_path="../../icons/icon.png",
+    icon_path="../icons/icon.png",
     category="/community/PSO",
 )
 @knext.input_table(
@@ -105,7 +105,7 @@ class PSONode:
         min_value=0,
     )
 
-    def configure(self, configure_context, input_schema_1, input_schema_2):
+    def configure(self, configure_context, input_schema):
         return None
 
     def execute(self, exec_context, input_table):
