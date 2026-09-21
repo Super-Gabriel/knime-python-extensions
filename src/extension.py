@@ -38,69 +38,69 @@ class PSONode:
     )
 
     swarm_size = knext.IntParameter(
-        label="Tamaño del enjambre",
-        description="Número de partículas del PSO",
+        label="Swarm size",
+        description="Number of PSO particles",
         default_value=15,
         min_value=5,
     )
 
     iterations = knext.IntParameter(
-        label="Iteraciones",
-        description="Número de iteraciones del PSO",
+        label="Iterations",
+        description="Number of PSO iterations",
         default_value=15,
         min_value=1,
     )
 
     w = knext.DoubleParameter(
-        label="Inercia (w)",
-        description="Coeficiente de inercia",
+        label="Inertia (w)",
+        description="Inertia coefficient",
         default_value=0.7,
         min_value=0.0,
         max_value=1.0,
     )
 
     c1 = knext.DoubleParameter(
-        label="Cognitivo (c1)",
-        description="Peso del mejor personal",
+        label="Cognitive coefficient (c1)",
+        description="Weight of the personal best",
         default_value=1.5,
         min_value=0.0,
         max_value=4.0,
     )
 
     c2 = knext.DoubleParameter(
-        label="Social (c2)",
-        description="Peso del mejor global",
+        label="Social coefficient (c2)",
+        description="Weight of the global best",
         default_value=1.5,
         min_value=0.0,
         max_value=4.0,
     )
 
     cv_folds = knext.IntParameter(
-        label="Folds de validación cruzada",
-        description="Número de particiones para cross_val_score",
+        label="Cross-validation folds",
+        description="Number of partitions for cross_val_score",
         default_value=3,
         min_value=2,
     )
 
     max_features = knext.IntParameter(
-        label="Máximo de descriptores",
-        description=("Número máximo de descriptores a seleccionar. "
-                     "Usa 0 para modo umbral (sin límite)."),
+        label="Maximum number of features",
+        description=("Maximum number of features to select. "
+                     "Use 0 for threshold mode (no limit)."),
         default_value=5,
         min_value=0,
     )
 
     threshold = knext.DoubleParameter(
-        label="Umbral (solo modo sin límite)",
-        description="Umbral para binarizar la posición si max_features=0",
+        label="Threshold (unlimited mode only)",
+        description="Threshold for binarizing the position when max_features=0",
         default_value=0.5,
         min_value=0.0,
         max_value=1.0,
     )
 
     random_seed = knext.IntParameter(
-        label="Semilla aleatoria",
-        description="Semilla para reproducibilidad",
+        label="Random seed",
+        description="Seed for reproducibility",
         default_value=42,
         min_value=0,
     )

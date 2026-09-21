@@ -2,10 +2,10 @@
 # It is used to define the extension's metadata and configuration.
 
 # Extension metadata
-name: PSO_extension  # Will be concatenated with the group_id to an ID
+name: PSO  # Will be concatenated with the group_id to an ID
 group_id: org.tutorial
-description: particle swarm optimization # Human readable bundle name / description
-long_description: This extension is my first Python extension.
+description: Particle Swarm Optimization feature selection # Human readable bundle name / description
+long_description: A KNIME Python extension for selecting relevant features with Particle Swarm Optimization.
 version: 0.1.0 # Version of this Python node extension
 
 # legal information 
