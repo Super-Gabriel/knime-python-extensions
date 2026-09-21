@@ -108,17 +108,11 @@ class PSONode:
     def configure(self, configure_context, input_schema_1, input_schema_2):
         return None
 
-    def execute(self, exec_context, input_1, input_2):
-        X_df = input_1.to_pandas()
-        Y_df = input_2.to_pandas()
+    def execute(self, exec_context, input_table):
+        df = input_table.to_pandas()
 
-        if Y_df.shape[1] < 1:
-            raise ValueError("La tabla Y debe contener al menos una columna.")
-        if Y_df.shape[1] > 1:
-            print(f"[PSO] Advertencia: Y tiene {Y_df.shape[1]} columnas, "
-                  f"se usará la primera: '{Y_df.columns[0]}'")
-
-        y = Y_df.iloc[:, 0].values
+        y = df[self.y_column]
+        X = df.drop(columns=[self.y_column])
 
         max_features = self.max_features if self.max_features > 0 else None
 
@@ -135,7 +129,7 @@ class PSONode:
             threshold=self.threshold,
         )
 
-        best_mask, best_score, best_features, history = pso.optimize(X_df, y)
+        best_mask, best_score, best_features, history = pso.optimize(X, y)
 
         if len(best_features) == 0:
             raise ValueError(
@@ -143,5 +137,5 @@ class PSONode:
                 "Prueba con más iteraciones o revisa la tabla X."
             )
 
-        X_selected = X_df[best_features]
+        X_selected = df[best_features]
         return knext.Table.from_pandas(X_selected)
