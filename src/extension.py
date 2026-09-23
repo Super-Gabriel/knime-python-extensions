@@ -28,8 +28,8 @@ class MRMRNode:
     target_type = knext.StringParameter(
         label="Target type",
         description="Select whether the target variable is continuous or categorical",
-        default_value="Regression",
-        enum=["Regression", "Classification"],
+        default_value="Continuous",
+        enum=["Continuous", "Categorical"],
     )
 
     k_features = knext.IntParameter(

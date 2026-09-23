@@ -17,7 +17,7 @@ def fast_mrmr(
     num_features_wanted,
     n_neighbors=3,
     random_state=42,
-    target_type="Regression",
+    target_type="Continuous",
 ):
     #X: matriz de variables
     #y: Actividades
@@ -31,12 +31,12 @@ def fast_mrmr(
     # 3: selectedFeatures = ();
     selected_features = []
 
-    if target_type == "Regression":
+    if target_type == "Continuous":
         mutual_information = mutual_info_regression
-    elif target_type == "Classification":
+    elif target_type == "Categorical":
         mutual_information = mutual_info_classif
     else:
-        raise ValueError("target_type must be 'Regression' or 'Classification'")
+        raise ValueError("target_type must be 'Continuous' or 'Categorical'")
 
     # --- [Líneas 4 a 7 del Pseudo-código] ---
     # 4: for each feature f in candidates do
