@@ -21,6 +21,7 @@ scikit-learn = "*"
 python = "3.9.*"
 knime-extension-bundling = "5.8.*"
 openjdk = "17.*"
+maven = "3.9.*"
 
 [feature.debug.dependencies]
 debugpy = "*"

@@ -85,14 +85,16 @@ class PSONode:
     max_features = knext.IntParameter(
         label="Maximum number of features",
         description=("Maximum number of features to select. "
-                     "Use 0 for threshold mode (no limit)."),
+                     "The threshold can select fewer features; among results "
+                     "within one standard error of the best, PSO prefers fewer. "
+                     "Use 0 for no limit."),
         default_value=5,
         min_value=0,
     )
 
     threshold = knext.DoubleParameter(
-        label="Threshold (unlimited mode only)",
-        description="Threshold for binarizing the position when max_features=0",
+        label="Feature selection threshold",
+        description="Positions at or above this value are selected, up to the maximum.",
         default_value=0.5,
         min_value=0.0,
         max_value=1.0,
