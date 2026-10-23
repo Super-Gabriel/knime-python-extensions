@@ -53,43 +53,26 @@ class MRMRNode:
         min_value=0,
     )
 
-    n_bins = knext.IntParameter(
-        label="Number of bins",
-        description="Number of bins used to discretize the input features",
-        default_value=5,
-        min_value=2,
-    )
-
     def configure(self, configure_context, input_schema):
         return None
 
     def execute(self, exec_context, input_table):
-        import pandas as pd
-        from sklearn.preprocessing import KBinsDiscretizer
         df = input_table.to_pandas()
 
         y = df[self.y_column]
         X = df.drop(columns=[self.y_column])
-        
+
         k = self.k_features
-        
-        discretizer = KBinsDiscretizer(
-            n_bins=self.n_bins,
-            encode="ordinal",
-            strategy="quantile",
-        )
-        X_disc = discretizer.fit_transform(X)
-        X_disc_df = pd.DataFrame(X_disc, columns=X.columns)
-        
+
         selected_columns = fast_mRMR.fast_mrmr(
-            X_disc_df,
+            X,
             y,
             k,
             n_neighbors=self.n_neighbors,
             random_state=self.random_state,
             target_type=self.target_type,
         )
-        
+
         X_selected = X[selected_columns]
-        
+
         return knext.Table.from_pandas(X_selected)

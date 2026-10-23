@@ -32,17 +32,16 @@ def fast_mrmr(
     selected_features = []
 
     if target_type == "Continuous":
-        mutual_information = mutual_info_regression
+        target_mutual_information = mutual_info_regression
     elif target_type == "Categorical":
-        mutual_information = mutual_info_classif
+        target_mutual_information = mutual_info_classif
     else:
         raise ValueError("target_type must be 'Continuous' or 'Categorical'")
 
     # --- [Líneas 4 a 7 del Pseudo-código] ---
     # 4: for each feature f in candidates do
     # 5: relevancesVector[f] = mutualInfo(f, class);
-    # Usamos mutual_info_regression para capturar relaciones continuas
-    relevances = mutual_information( 
+    relevances = target_mutual_information(
         X,
         y,
         n_neighbors=n_neighbors,
@@ -79,7 +78,7 @@ def fast_mrmr(
         # Pre-calculamos el MI de la última seleccionada contra todas las candidatas
         # para optimizar el rendimiento (es la esencia del "Fast")
         last_feat_data = X[last_feature_selected].values.reshape(-1, 1)
-        mi_with_last = mutual_information(
+        mi_with_last = mutual_info_regression(
             X[candidates],
             last_feat_data.ravel(),
             n_neighbors=n_neighbors,

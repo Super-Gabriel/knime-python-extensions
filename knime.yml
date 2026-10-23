@@ -5,7 +5,7 @@
 name: mRMR  # Will be concatenated with the group_id to an ID
 group_id: org.tutorial
 description: mRMR # Human readable bundle name / description
-long_description: A KNIME node for selecting the most relevant features using the fast minimum Redundancy Maximum Relevance (mRMR) algorithm. The node estimates mutual information between the input features and a user-selected target column, supports both regression and classification targets, and lets users configure the number of features, nearest neighbors, random seed, and discretization bins.
+long_description: A KNIME node for selecting the most relevant features using the fast minimum Redundancy Maximum Relevance (mRMR) algorithm. The node estimates mutual information between the input features and a user-selected target column, supports both regression and classification targets, and lets users configure the number of features, nearest neighbors, and random seed.
 version: 0.1.0 # Version of this Python node extension
 
 # legal information 
